@@ -42,9 +42,9 @@
     </template>
 
     <template
-        id="external_clean_layout_images_template"
+        id="external_bold_layout_images_template"
         primary="True"
-        inherit_id="web.external_layout_clean"
+        inherit_id="web.external_layout_bold"
     >
         <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
             <div class="header">
@@ -81,8 +81,7 @@
     </template>
 
     <template id="styles_company_report" inherit_id="web.styles_company_report">
-        <xpath expr="//t[contains(@t-elif, 'layout')]" position="after">
-            <!-- next part is the same as in web/views/report_templates web.external_layout_standard -->
+        <xpath expr="//t[contains(@t-if, 'layout')]" position="after">
             <t
                 t-elif="layout == 'report_layout_config.external_standard_layout_images_template'"
             >
@@ -93,7 +92,7 @@
                     #informations strong {
                         color: <t t-esc='secondary' />;
                     }
-                    #total strong{
+                    #total strong {
                         color: <t t-esc='primary' />;
                     }
                     table {
@@ -103,9 +102,8 @@
                     }
                 }
             </t>
-            <!-- next part is the same as in web/views/report_templates web.external_layout_clean -->
             <t
-                t-elif="layout == 'report_layout_config.external_clean_layout_images_template'"
+                t-elif="layout == 'report_layout_config.external_bold_layout_images_template'"
             >
                 &amp;.o_clean_footer {
                         border-top: 3px solid <t t-esc='secondary' />;
@@ -117,7 +115,7 @@
                             background-color: <t t-esc='secondary' />;
                         }
                     }
-                &amp;.o_report_layout_clean {
+                &amp;.o_report_layout_bold {
                     h1, h2, h3 {
                         color: <t t-esc='primary' />;
                     }
