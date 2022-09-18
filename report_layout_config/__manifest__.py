@@ -12,10 +12,14 @@
     "depends": ["web", "base"],
     "data": [
         "views/document_layout.xml",
-        "templates/assets.xml",
         "templates/report_templates.xml",
         "data/report_layout.xml",
     ],
+    "assets": {
+        "web.report_assets_common": [
+            "report_layout_config/static/src/scss/style.scss",
+        ],
+    },
     "application": False,
     "installable": True,
 }
