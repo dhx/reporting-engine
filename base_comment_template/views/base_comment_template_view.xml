@@ -10,7 +10,8 @@
                 <field name="position" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="partner_ids" />
-                <field name="model_ids" />
+                <field name="models" groups="!base.group_erp_manager" />
+                <field name="model_ids" groups="base.group_erp_manager" />
                 <field name="domain" />
             </tree>
         </field>
@@ -24,7 +25,8 @@
                 <field name="position" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="partner_ids" />
-                <field name="model_ids" />
+                <field name="models" groups="!base.group_erp_manager" />
+                <field name="model_ids" groups="base.group_erp_manager" />
                 <field name="domain" />
                 <field name="sequence" />
             </search>
@@ -67,13 +69,33 @@
                                 groups="base.group_multi_company"
                             />
                             <field name="domain" />
-                            <field name="model_ids" widget="many2many_tags" />
+                            <field name="models" />
                             <field name="partner_ids" widget="many2many_tags" />
                         </group>
                     </group>
                     <notebook>
                         <page name="text" string="Comment">
                             <field name="text" />
+                        </page>
+                        <page
+                            string="Dynamic Placeholder Generator"
+                            name="dynamic_placeholder_generator"
+                        >
+                            <group>
+                                <field name="model_ids" invisible="1" />
+                                <field
+                                    name="model_object_field"
+                                    domain="[('model_id','in',model_ids),('ttype','!=','one2many'),('ttype','!=','many2many')]"
+                                />
+                                <field name="sub_object" readonly="1" />
+                                <field
+                                    name="sub_model_object_field"
+                                    domain="[('model_id','=',sub_object),('ttype','!=','one2many'),('ttype','!=','many2many')]"
+                                    attrs="{'readonly':[('sub_object','=',False)],'required':[('sub_object','!=',False)]}"
+                                />
+                                <field name="null_value" />
+                                <field name="copyvalue" />
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
